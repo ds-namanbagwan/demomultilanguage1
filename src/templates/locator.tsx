@@ -55,7 +55,7 @@ export const getPath: GetPath<TemplateProps> = ({document}) => {
 
 export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
   // return [`index-old/${document.locale+"/"+document.name}`];
-  return [`index-old/${document.locale}`];
+  return [`index-old/`];
 };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
