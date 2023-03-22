@@ -1,0 +1,21 @@
+{
+  "$id": "site-entity",
+  "filter": {
+    "entityIds": ["h&f"]
+  },
+  "source": "knowledgeGraph",
+  "fields": [
+      "photoGallery",
+      "c_header1",
+      "c_footerdata1",
+      "c_footerdata2",
+      "c_footerdata3",
+      "c_footersocialdata"
+      
+
+  ],
+  "localization": {
+    "locales": ["en","en_GB","fr"],
+    "primary": false
+  }
+}
