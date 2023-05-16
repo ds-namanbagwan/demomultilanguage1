@@ -18,23 +18,27 @@ export const config: TemplateConfig = {
     // directly as props to the default exported function.
     fields: [
       "name",
-      
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityIds: ["global-data"]
+      entityIds: ["h&f"]
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en_GB"],
+      locales: ["en","fr","en_GB"],
       primary: false,
     },
   },
 };
 
 // The path must be exactly 404.html
-export const getPath: GetPath<TemplateProps> = () => {
-  return "404.html";
+// export const getPath: GetPath<TemplateProps> = (document) => {
+//   // return "404.html";
+//   return document.locale+"/"+`404.html`;
+// };
+export const getPath: GetPath<TemplateProps> = ({ document }) => {
+    return document.locale+"/"+`404.html`;
+  // return `/index.html`;
 };
 
 // Add a title to the page
@@ -76,8 +80,6 @@ const FourOhFour: Template<TemplateRenderProps> = ({
                 <a className="btn" href="/">{StaticData.homePage} &gt;</a>
               </div>
             </div>
-
-
           </div>
         </div>
       </PageLayout>

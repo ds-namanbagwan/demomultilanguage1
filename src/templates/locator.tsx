@@ -40,15 +40,15 @@ export const config: TemplateConfig = {
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en"],
+      locales: ["en","fr","en_GB"],
       primary: false,
     },
   },
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  // return document.locale + "/" + `index.html`;
-  return `/index.html`;
+  return document.locale+"/"+`index.html`;
+  // return `/index.html`;
 };
 
 // export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {

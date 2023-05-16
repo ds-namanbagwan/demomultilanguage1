@@ -54,7 +54,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   let result1: any = string.replaceAll(" ", "-");
   if (!result.rawData.slug) {
     url = finalcountry + "/" + finalregion + "/" + finalcity + "/" + `${result1}.html`;
-    console.log(url, "url");
+    // console.log(url, "url");
   } else {
     url = `/${result.rawData.slug.toString()}.html`;
   }
