@@ -21,7 +21,7 @@ export default function Header(props: any) {
                         // console.log("hui", data)
                         return (
                             <>
-                                <a href={data.hdata.link}>{data?.hdata?.label}</a>
+                                <a className="hover:underline hover:text-red" href={data.hdata.link}>{data?.hdata?.label}</a>
                             </>
                         )
                     })}

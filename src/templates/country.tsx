@@ -62,7 +62,7 @@ export const config: TemplateConfig = {
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en","en_GB","fr"],
+      locales: ["en", "en_GB", "fr"],
       primary: false,
     },
   },
@@ -71,12 +71,12 @@ export const config: TemplateConfig = {
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   currentUrl = "/" + document.slug.toString() + ".html";
-  return document.locale+"/" + document.slug.toString() + ".html";
+  return document.locale + "/" + document.slug.toString() + ".html";
 };
 
 export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
   // return [`index-old/${document.id.toString()}`];
-  return [`index-old/${document.locale+"/"+document.name}`];
+  return [`index-old/${document.locale + "/" + document.name}`];
 };
 
 
@@ -85,9 +85,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   path,
   document,
 }): HeadConfig => {
-  
+
   return {
-    title: `${document.c_meta_title?document.c_meta_title:`MGM Stores in ${document.name} | Find a Local Store`}`,
+    title: `${document.c_meta_title ? document.c_meta_title : `MGM Stores in ${document.name} | Find a Local Store`}`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -98,77 +98,76 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           href: favicon,
         },
       },
-        {
-          type: "meta",
-          attributes: {
-            name: "description",
-            content:`${document.c_meta_description?document.c_meta_description:`Use this page to find your nearest MGM store in ${document.name} and discover the location details you need to visit us today.`}`,
-          },
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: `${document.c_meta_description ? document.c_meta_description : `Use this page to find your nearest MGM store in ${document.name} and discover the location details you need to visit us today.`}`,
         },
+      },
 
-        {
-          type: "meta",
-          attributes: {
-            name: "author",
-            content: StaticData.Brandname,
-          },
+      {
+        type: "meta",
+        attributes: {
+          name: "author",
+          content: StaticData.Brandname,
         },
-        {
-          type: "meta",
-          attributes: {
-            name: "keywords",
-            content: document.name,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "keywords",
+          content: document.name,
         },
-        {
-          type: "meta",
-          attributes: {
-            name: "robots",
-            content: "noindex, nofollow",
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "robots",
+          content: "noindex, nofollow",
         },
+      },
 
-        {
-          type: "link",
-          attributes: {
-            rel: "canonical",
-            href: `${
-              stagingBaseurl 
-                 ? stagingBaseurl + document.slug + ".html"
-                 : "/" + document.slug + ".html"
+      {
+        type: "link",
+        attributes: {
+          rel: "canonical",
+          href: `${stagingBaseurl
+              ? stagingBaseurl + document.slug + ".html"
+              : "/" + document.slug + ".html"
             }`,
-          },
         },
+      },
       //   // /og tags
 
-        {
-          type: "meta",
-          attributes: {
-            property: "og:url",
-            content: `/${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
-          },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:url",
+          content: `/${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
         },
-        {
-          type: "meta",
-          attributes: {
-            property: "og:description",
-            content: `${document.c_meta_description?document.c_meta_description:`Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:description",
+          content: `${document.c_meta_description ? document.c_meta_description : `Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`,
         },
-        {
-          type: "meta",
-          attributes: {
-            property: "og:title",
-            content: `${document.name}`,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:title",
+          content: `${document.name}`,
         },
-        {
-          type: "meta",
-          attributes: {
-            property: "og:image",
-            content: favicon,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:image",
+          content: favicon,
         },
+      },
 
       {
         type: "meta",
@@ -181,7 +180,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:url",
-          content: `/${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
+          content: `/${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
         },
       },
 
@@ -189,7 +188,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`
+          content: `${document.c_meta_description ? document.c_meta_description : `Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`
         },
       },
     ],
@@ -243,8 +242,8 @@ const country: Template<TemplateRenderProps> = ({
             // console.log(detl,"123456")
             if (!detl.slug) {
               let slugString = detl.name;
-              let slug =slugString;
-              detlslug1 = document.slug+"/"+entity.slug+"/"+res.slug+"/"+`${slug}.html`;
+              let slug = slugString;
+              detlslug1 = document.slug + "/" + entity.slug + "/" + res.slug + "/" + `${slug}.html`;
               // console.log(detlslug1,"123456")
             } else {
               detlslug1 = `${detl.slug.toString()}.html`;
@@ -282,36 +281,36 @@ const country: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <Header props={_site}/>
-        <BreadCrumbs
-          name={regionNames.of(name)}
-          address={address}
-          parents={dm_directoryParents}
-          baseUrl={relativePrefixToRoot}
-        ></BreadCrumbs>
-        {/* <div className="location-dtl">
+      <Header props={_site} />
+      <BreadCrumbs
+        name={regionNames.of(name)}
+        address={address}
+        parents={dm_directoryParents}
+        baseUrl={relativePrefixToRoot}
+      ></BreadCrumbs>
+      {/* <div className="location-dtl">
           <Banner name={regionNames.of(name)} c_bannerImage={bannerimage} />
         </div> */}
 
 
 
-        <div className="content-list">
-          <div className="container">
-            <div className="sec-title">
-              <h2 style={{ textAlign: "center" }}>
-                {StaticData.AllRegion} {regionNames.of(name)}{" "}
-              </h2>
-            </div>
-
-            <ul className="region-list">
-
-              {childrenDivs}
-            </ul>
-
+      <div className="content-list">
+        <div className="container">
+          <div className="sec-title">
+            <h2 style={{ textAlign: "center" }}>
+              {StaticData.AllRegion} {regionNames.of(name)}{" "}
+            </h2>
           </div>
-        </div>
 
-        <Footer1 props={_site}/>
+          <ul className="region-list">
+
+            {childrenDivs}
+          </ul>
+
+        </div>
+      </div>
+
+      <Footer1 props={_site} />
     </>
   );
 };

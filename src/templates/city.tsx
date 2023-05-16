@@ -48,14 +48,14 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.slug",
       "dm_directoryChildren.name",
       "dm_directoryChildren.id",
-    //   "dm_directoryChildren.dm_directoryChildrenCount",
+      //   "dm_directoryChildren.dm_directoryChildrenCount",
       "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
       "dm_directoryChildren.yextDisplayCoordinate"
     ],
     localization: {
-      locales: ["en","en_GB","fr"],
+      locales: ["en", "en_GB", "fr"],
       primary: false,
     },
   },
@@ -71,7 +71,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
       url = `${url}/${i.slug}/${document.slug.toString()}.html`
     }
   })
-  return document.locale+"/"+url;
+  return document.locale + "/" + url;
 };
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
@@ -79,13 +79,13 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   path,
   document,
 }): HeadConfig => {
-  var canonical="";
-   document?.dm_directoryChildren?.map((entity: any) => {
-      canonical=  entity.address.countryCode.toLowerCase().replaceAll(" ", "-") + '/' +  entity.address.region.toLowerCase().replaceAll(" ", "-");
-          })
+  var canonical = "";
+  document?.dm_directoryChildren?.map((entity: any) => {
+    canonical = entity.address.countryCode.toLowerCase().replaceAll(" ", "-") + '/' + entity.address.region.toLowerCase().replaceAll(" ", "-");
+  })
 
   return {
-    title: `${document.c_meta_title?document.c_meta_title:`MGM Stores in ${document.name} | Find a Local Store`}`,
+    title: `${document.c_meta_title ? document.c_meta_title : `MGM Stores in ${document.name} | Find a Local Store`}`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -96,13 +96,13 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           href: favicon,
         },
       },
-        {
-          type: "meta",
-          attributes: {
-            name: "description",
-            content:`${document.c_meta_description?document.c_meta_description:`Use this page to find your nearest MGM store in ${document.name} and discover the location details you need to visit us today.`}`,
-          },
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: `${document.c_meta_description ? document.c_meta_description : `Use this page to find your nearest MGM store in ${document.name} and discover the location details you need to visit us today.`}`,
         },
+      },
 
       //   {
       //     type: "meta",
@@ -111,73 +111,71 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       //       content: `${document.c_metaTitle}`,
       //     },
       //   },
-        {
-          type: "meta",
-          attributes: {
-            name: "author",
-            content: StaticData.Brandname,
-          },
+      {
+        type: "meta",
+        attributes: {
+          name: "author",
+          content: StaticData.Brandname,
         },
-        {
-          type: "meta",
-          attributes: {
-            name: "keywords",
-            content: document.name,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "keywords",
+          content: document.name,
         },
-        {
-          type: "meta",
-          attributes: {
-            name: "robots",
-            content: "noindex, nofollow",
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "robots",
+          content: "noindex, nofollow",
         },
+      },
 
-        {
-          type: "link",
-          attributes: {
-            rel: "canonical",
-            href: `${
-              stagingBaseurl 
-                 ? stagingBaseurl + canonical + "/"+ document.slug + ".html"
-                 : "/" + document.slug + ".html"
+      {
+        type: "link",
+        attributes: {
+          rel: "canonical",
+          href: `${stagingBaseurl
+              ? stagingBaseurl + canonical + "/" + document.slug + ".html"
+              : "/" + document.slug + ".html"
             }`,
-          },
         },
+      },
       //   // /og tags
 
-        {
-          type: "meta",
-          attributes: {
-            property: "og:url",
-            content: `${
-              stagingBaseurl 
-                 ? stagingBaseurl + canonical + "/"+ document.slug + ".html"
-                 : "/" + document.slug + ".html"
+      {
+        type: "meta",
+        attributes: {
+          property: "og:url",
+          content: `${stagingBaseurl
+              ? stagingBaseurl + canonical + "/" + document.slug + ".html"
+              : "/" + document.slug + ".html"
             }`,
-          },
         },
-        {
-          type: "meta",
-          attributes: {
-            property: "og:description",
-            content: `${document.c_meta_description?document.c_meta_description:`Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:description",
+          content: `${document.c_meta_description ? document.c_meta_description : `Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`,
         },
-        {
-          type: "meta",
-          attributes: {
-            property: "og:title",
-            content: `${document.name}`,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:title",
+          content: `${document.name}`,
         },
-        {
-          type: "meta",
-          attributes: {
-            property: "og:image",
-            content: favicon,
-          },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:image",
+          content: favicon,
         },
+      },
 
       {
         type: "meta",
@@ -190,7 +188,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:url",
-          content: `/${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
+          content: `/${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
         },
       },
 
@@ -198,7 +196,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`
+          content: `${document.c_meta_description ? document.c_meta_description : `Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`}`
         },
       },
     ],
@@ -263,7 +261,7 @@ const City: Template<TemplateRenderProps> = ({
     let result: any = string.replaceAll(" ", "-");
     // let newlink: any = 
     if (!entity.slug) {
-      url = document.slug+"/"+`${result}.html`;
+      url = document.slug + "/" + `${result}.html`;
     } else {
       url = `/${entity.slug.toString()}.html`;
     }
@@ -274,35 +272,35 @@ const City: Template<TemplateRenderProps> = ({
 
       <div className="nearby-card">
         <div className="location-name-miles icon-row">
-        {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
+          {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
                       alt="" /></div> */}
           <h2><Link className="inline-block notHighlight" href={url}
-           data-ya-track={`viewstore-${entity.name}`}
-           eventName={`viewstore-${entity.name}`}
-           rel="noopener noreferrer"
+            data-ya-track={`viewstore-${entity.name}`}
+            eventName={`viewstore-${entity.name}`}
+            rel="noopener noreferrer"
           >{entity.name}</Link></h2>
         </div>
         <div className="icon-row">
           <Address address={entity.address} />
         </div>
-        {entity.mainPhone?
-        <div className="icon-row">
-           {/* <div className="icon">
+        {entity.mainPhone ?
+          <div className="icon-row">
+            {/* <div className="icon">
            <img className=" " src={Phonesvg} width="20" height="20"
                         alt="" />
                         </div> */}
-          <div className="content-col">
-            <a href={`tel:${entity.mainPhone}`}>{entity.mainPhone}</a>
-          </div>
-        </div>:''}
-       
+            <div className="content-col">
+              <a href={`tel:${entity.mainPhone}`}>{entity.mainPhone}</a>
+            </div>
+          </div> : ''}
+
         <div className="icon-row">
           <div className="content-col open-now-string">
-           
-            {typeof entity.hours?.reopenDate!="undefined"?
-            <h6>{StaticData.tempClosed}</h6>
-          :<OpenClose timezone={entity.timezone} hours={entity.hours}/>}
-           
+
+            {typeof entity.hours?.reopenDate != "undefined" ?
+              <h6>{StaticData.tempClosed}</h6>
+              : <OpenClose timezone={entity.timezone} hours={entity.hours} />}
+
           </div>
         </div>
         {/* <div className="icon-row content-col availability-col">
@@ -317,16 +315,16 @@ const City: Template<TemplateRenderProps> = ({
 
         <div className="button-bx">
           <Link className="btn" href={url}
-           data-ya-track={`viewstore-${entity.name}`}
-           eventName={`viewstore-${entity.name}`}
-           rel="noopener noreferrer"
+            data-ya-track={`viewstore-${entity.name}`}
+            eventName={`viewstore-${entity.name}`}
+            rel="noopener noreferrer"
           >
 
             {StaticData.StoreDetailbtn}</Link>
           <GetDirection buttonText={StaticData.getDirection} address={entity.address} latitude={entity.yextDisplayCoordinate.latitude} longitude={entity.yextDisplayCoordinate.longitude} />
         </div>
       </div>
-  );
+    );
   });
   function getDirectionUrl(entitiy: any) {
     var origin: any = null;
@@ -453,27 +451,27 @@ const City: Template<TemplateRenderProps> = ({
           itemListElement: breadcrumbScheme,
         }}
       />
-      <Header props={_site}/>
-        <BreadCrumbs
-          name={name}
-          address={address}
-          parents={dm_directoryParents}
-          baseUrl={relativePrefixToRoot}
-        ></BreadCrumbs>
+      <Header props={_site} />
+      <BreadCrumbs
+        name={name}
+        address={address}
+        parents={dm_directoryParents}
+        baseUrl={relativePrefixToRoot}
+      ></BreadCrumbs>
 
-        <div className="content-list city-page">
-          <div className="container mx-auto">
-            <div className="sec-title">
-              <h2>
+      <div className="content-list city-page">
+        <div className="container mx-auto">
+          <div className="sec-title">
+            <h2>
               MGM stores in {name}
-              </h2>
-            </div>
-            <div className="flex flex-wrap justify-center items-start -mx-2.5 lg:-mx-[.9375rem]">
-              {childrenDivs}
-            </div>
+            </h2>
+          </div>
+          <div className="flex flex-wrap justify-center items-start -mx-2.5 lg:-mx-[.9375rem]">
+            {childrenDivs}
           </div>
         </div>
-        <Footer1 props={_site}/>
+      </div>
+      <Footer1 props={_site} />
     </>
   );
 };

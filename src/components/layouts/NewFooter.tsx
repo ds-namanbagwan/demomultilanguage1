@@ -7,16 +7,16 @@ export default function Footer1(props: any) {
     return (
         <>
             <div className="flex w-fit mt-8 mb-8 gap-20">
-                <div>                {props?.props?.c_footerdata1?.map((c_footerdata1: any) => {
+                <div>{props?.props?.c_footerdata1?.map((c_footerdata1: any) => {
                     // console.log(img, "544561")
                     return (
                         <>
-                            <p className="text-2xl ml-12">{c_footerdata1.fhead}</p>
+                            <p className="text-2xl ml-12 text-red">{c_footerdata1.fhead}</p>
                             {c_footerdata1?.fsubdata?.map((subdata1: any) => {
                                 return (
                                     <>
-                                        <div className="mt-5 font-large ml-12">
-                                            <a href={subdata1.link}>{subdata1.label}                                            </a>
+                                        <div className="mt-5 font-large ml-12 hover:underline hover:text-red">
+                                            <a href={subdata1.link}>{subdata1.label}                                         </a>
                                         </div>
                                     </>
                                 )
@@ -32,11 +32,11 @@ export default function Footer1(props: any) {
                         // console.log(img, "544561")
                         return (
                             <>
-                                <p className="text-2xl ml-12">{c_footerdata2.fhead}</p>
+                                <p className="text-2xl ml-12 text-red">{c_footerdata2.fhead}</p>
                                 {c_footerdata2?.fsubdata?.map((subdata2: any) => {
                                     return (
                                         <>
-                                            <div className="mt-5 font-large ml-12">
+                                            <div className="mt-5 font-large ml-12 hover:underline hover:text-red">
                                                 <a href={subdata2.link}>{subdata2.label}                                            </a>
                                             </div>
                                         </>
@@ -52,11 +52,11 @@ export default function Footer1(props: any) {
                         // console.log(img, "544561")
                         return (
                             <>
-                                <p className="text-2xl ml-12">{c_footerdata3.fhead}</p>
+                                <p className="text-2xl ml-12 text-red">{c_footerdata3.fhead}</p>
                                 {c_footerdata3?.fsubdata?.map((subdata3: any) => {
                                     return (
                                         <>
-                                            <div className="mt-5 font-large ml-12">
+                                            <div className="mt-5 font-large ml-12 hover:underline hover:text-red">
                                                 <a href={subdata3.link}>{subdata3.label}                                            </a>
                                             </div>
                                         </>
@@ -68,13 +68,13 @@ export default function Footer1(props: any) {
                     })}
                 </div>
                 <div className="text">
-                    <p className="text-2xl ml-12">Social</p>
+                    <p className="text-2xl ml-12 text-red">Social</p>
                     {props?.props?.c_footersocialdata?.map((img: any) => {
                         // console.log(img, "544561")
                         return (
                             <>
-                                <div className="text mt-2 w-10 ml-[53px]">
-                                    <img src={img.url} alt="" />
+                                <div className="text mt-2 w-10 ml-[53px] hover:underline hover:text-red">
+                                    <a href="#"><img src={img.url} alt="" /></a>
                                 </div>
                             </>
                         )
@@ -85,7 +85,7 @@ export default function Footer1(props: any) {
                         // console.log(img, "544561")
                         return (
                             <>
-                                <img src={img.image.url} alt=""/>
+                                <img src={img.image.url} alt="" />
                             </>
                         )
                     })}

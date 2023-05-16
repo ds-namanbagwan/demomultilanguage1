@@ -45,8 +45,9 @@ export default function Nearby(props: any) {
         }}
       > */}
         {neabyData.map((location: any, index: Number) => {
-
+console.log(neabyData.locales,"naman")
           let url1 = "";
+          // var locales: any = location.data
           var country: any = location.data.address.countryCode?.toLowerCase();
           var initialcountry: any = country.toString();
           var finalcountry: any = initialcountry.replaceAll(" ", "-");
@@ -60,8 +61,8 @@ export default function Nearby(props: any) {
           var string: any = name.toString();
           let result1: any = string.replaceAll(" ", "-");
           if (!location.data.slug) {
-            url1 = `${finalcountry}`+"/"+`${finalregion}`+"/"+`${finalcity}`+"/"+`${result1}.html`;
-            console.log(url1,"154328576834188475")
+            url1 = `/${finalcountry}`+"/"+`${finalregion}`+"/"+`${finalcity}`+"/"+`${result1}.html`;
+            // console.log(url1,"154328576834188475")
           } else {
             url1 = `/${location.data.slug.toString()}.html`;
           }
