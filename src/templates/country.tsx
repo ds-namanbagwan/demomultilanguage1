@@ -19,8 +19,6 @@ import { favicon, regionNames, stagingBaseurl } from "../../sites-global/global"
 import Footer1 from "../components/layouts/NewFooter";
 import Header from "../components/layouts/NewHeader";
 
-
-
 /**
  * Required when Knowledge Graph data is used for a template.
  */
@@ -68,7 +66,6 @@ export const config: TemplateConfig = {
   },
 };
 
-
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   currentUrl = "/" + document.slug.toString() + ".html";
   return document.locale + "/" + document.slug.toString() + ".html";
@@ -78,7 +75,6 @@ export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
   // return [`index-old/${document.id.toString()}`];
   return [`index-old/${document.locale + "/" + document.name}`];
 };
-
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -105,7 +101,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `Use this page to find your nearest MGM store in ${document.name} and discover the location details you need to visit us today.`}`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -127,19 +122,17 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: "noindex, nofollow",
         },
       },
-
       {
         type: "link",
         attributes: {
           rel: "canonical",
           href: `${stagingBaseurl
-              ? stagingBaseurl + document.slug + ".html"
-              : "/" + document.slug + ".html"
+            ? stagingBaseurl + document.slug + ".html"
+            : "/" + document.slug + ".html"
             }`,
         },
       },
       //   // /og tags
-
       {
         type: "meta",
         attributes: {
@@ -168,7 +161,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: favicon,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -183,7 +175,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `/${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -194,8 +185,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
     ],
   };
 };
-
-
 
 const country: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -214,15 +203,10 @@ const country: Template<TemplateRenderProps> = ({
   } = document;
   const childrenDivs = dm_directoryChildren ? dm_directoryChildren.map((entity: any) => {
     let detlslug;
-
-
     if (typeof entity.dm_directoryChildren != "undefined") {
       if (entity.dm_baseEntityCount == 1) {
         entity.dm_directoryChildren.map((res: any) => {
-          // console.log(res,"123456")
-
           let detlslug1 = "";
-
           if (!res.slug) {
             let slugString = res.id + " " + res.name;
             let slug = slugString;
@@ -230,14 +214,6 @@ const country: Template<TemplateRenderProps> = ({
           } else {
             detlslug1 = `${res.slug.toString()}.html`;
           }
-          // if (res.meta.entityType.id == 'ce_city') {
-          //   detlslug1 = "gb/" + detlslug1;
-          // } else {
-          //   detlslug1 = detlslug1;
-          // }
-
-          // console.log(entity.name, res);
-
           res.dm_directoryChildren ? res.dm_directoryChildren.map((detl: any) => {
             // console.log(detl,"123456")
             if (!detl.slug) {
@@ -248,12 +224,8 @@ const country: Template<TemplateRenderProps> = ({
             } else {
               detlslug1 = `${detl.slug.toString()}.html`;
             }
-
             detlslug = detlslug1;
-
           }) : detlslug = detlslug1;
-
-
         })
       }
       else {
@@ -261,7 +233,6 @@ const country: Template<TemplateRenderProps> = ({
         // console.log(detlslug,"detlslug")
       }
     }
-
     return (
       <li className=" storelocation-category">
         <a
@@ -273,12 +244,9 @@ const country: Template<TemplateRenderProps> = ({
       </li>
     )
   }) : null;
-
-
   let bannerimage = c_locatorBannerImage ? c_locatorBannerImage.map((element: any) => {
     return element.url
   }) : null;
-
   return (
     <>
       <Header props={_site} />
@@ -288,12 +256,6 @@ const country: Template<TemplateRenderProps> = ({
         parents={dm_directoryParents}
         baseUrl={relativePrefixToRoot}
       ></BreadCrumbs>
-      {/* <div className="location-dtl">
-          <Banner name={regionNames.of(name)} c_bannerImage={bannerimage} />
-        </div> */}
-
-
-
       <div className="content-list">
         <div className="container">
           <div className="sec-title">
@@ -301,15 +263,11 @@ const country: Template<TemplateRenderProps> = ({
               {StaticData.AllRegion} {regionNames.of(name)}{" "}
             </h2>
           </div>
-
           <ul className="region-list">
-
             {childrenDivs}
           </ul>
-
         </div>
       </div>
-
       <Footer1 props={_site} />
     </>
   );

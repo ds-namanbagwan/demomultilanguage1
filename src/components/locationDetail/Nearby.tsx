@@ -37,7 +37,7 @@ export default function Nearby(props: any) {
         var string: any = name.toString();
         let result1: any = string.replaceAll(" ", "-");
         if (!location.data.slug) {
-          url1 = `/${locale}` + "/" + `${finalcountry}` + "/" + `${finalregion}` + "/" + `${finalcity}` + "/" + `${result1}.html`;
+          url1 = `/${locale}`+"/"+`${finalcountry}`+"/"+`${finalregion}`+"/"+`${finalcity}`+"/"+`${result1}.html`;
           // console.log(url1, "154328576834188475")
         } else {
           url1 = `/${location.data.slug.toString()}.html`;

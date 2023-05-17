@@ -80,7 +80,6 @@ export const config: TemplateConfig = {
     // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ['location']
-
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -153,8 +152,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
-
-
       {
         type: "meta",
         attributes: {
@@ -162,7 +159,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: StaticData.Brandname,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -170,7 +166,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: "noindex, nofollow",
         },
       },
-
       // {
       //   type: "link",
       //   attributes: {
@@ -180,7 +175,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       //       }${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
       //   },
       // },
-
       {
         type: "meta",
         attributes: {
@@ -231,12 +225,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         },
       },
       /// twitter tag
-
-
-
-
-
-
     ],
 
   };
@@ -256,8 +244,6 @@ export const transformProps: TransformProps<ExternalApiData> = async (
   )) as nearByLocation;
   return { ...data, externalApiData };
 };
-
-
 
 type ExternalApiRenderData = TemplateRenderProps & {
   externalApiData: nearByLocation;
@@ -322,7 +308,6 @@ const Location: Template<ExternalApiRenderData> = ({
         }
       } else {
       }
-
       hoursSchema.push(openIntervalsSchema);
     }
   }
@@ -407,14 +392,10 @@ const Location: Template<ExternalApiRenderData> = ({
   let imageurl = photoGallery ? photoGallery.map((element: any) => {
     return element.image.url
   }) : null;
-  // console.log(document)
   let bannerimage = c_banner_image && c_banner_image.image.url;
 
-
   return (
-
     <>
-
       <JsonLd<Store>
         item={{
           "@context": "https://schema.org",
@@ -443,9 +424,6 @@ const Location: Template<ExternalApiRenderData> = ({
           itemListElement: breadcrumbScheme,
         }}
       />
-
-
-
       <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
@@ -453,17 +431,13 @@ const Location: Template<ExternalApiRenderData> = ({
       >
         {" "}
         <AnalyticsScopeProvider name={""}>
-
           <Header props={_site} />
-
           <BreadCrumbs
             name={name}
             address={address}
             parents={dm_directoryParents}
             baseUrl={relativePrefixToRoot}
           ></BreadCrumbs>
-
-
           <div className="container">
             <div className='banner-text banner-dark-bg justify-center text-center'>
               <h1 className="">{name}</h1>
@@ -486,7 +460,6 @@ const Location: Template<ExternalApiRenderData> = ({
                 </div>
             }
           </div>
-
           <div className="nearby-sec">
             <div className="container">
               <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>
@@ -496,10 +469,8 @@ const Location: Template<ExternalApiRenderData> = ({
                   : ''}
               </div>
             </div>
-
           </div>
           <Footer1 props={_site} />
-
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>
