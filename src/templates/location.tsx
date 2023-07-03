@@ -75,7 +75,9 @@ export const config: TemplateConfig = {
       "cityCoordinate",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
-      "dm_directoryParents.meta.entityType"
+      "dm_directoryParents.meta.entityType",
+      "c_aboutSection",
+      "c_image"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -98,24 +100,24 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
 
   var url = "";
-  var name: any = document.name.toLowerCase();
-  var string: any = name.toString();
-  let result: any = string.replaceAll(" ", "-");
+  // var name: any = document.name.toLowerCase();
+  // var string: any = name.toString();
+  // let result: any = string.replaceAll(" ", "-");
 
-  document.dm_directoryParents?.map((result: any, i: Number) => {
-    if (i > 0) {
-      url += result.slug + "/"
-    }
-  })
-  if (!document.slug) {
-    url += `${result}.html`;
-  } else {
-    url += document.locale + "/" + `${document.slug.toString()}.html`;
-  }
+  // document.dm_directoryParents?.map((result: any, i: Number) => {
+  //   if (i > 0) {
+  //     url += result.slug + "/"
+  //   }
+  // })
+  // if (!document.slug) {
+  //   url += `${result}.html`;
+  // } else {
+  //   url += document.locale + "/" + `${document.slug.toString()}.html`;
+  // }
 
-  // return `${document.id}.html`;
+  // // return `${document.id}.html`;
 
-  return document.locale + "/" + url;
+  return document.locale + "/" + document.id+".html";
   // return document.locale+"/"+document.id;
 
 };
@@ -272,7 +274,9 @@ const Location: Template<ExternalApiRenderData> = ({
     displayCoordinate,
     cityCoordinate,
     dm_directoryParents,
-    name
+    name,
+    c_aboutSection,
+    c_image
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -392,7 +396,14 @@ const Location: Template<ExternalApiRenderData> = ({
   let imageurl = photoGallery ? photoGallery.map((element: any) => {
     return element.image.url
   }) : null;
-  let bannerimage = c_banner_image && c_banner_image.image.url;
+
+  let imageurl1 = c_image ? c_image.map((element1: any) => {
+    // console.log(element1.url,"124366")
+    return <>
+   <img src={element1.url} alt="" />
+    </>
+  }) : null;
+
 
   return (
     <>
@@ -460,6 +471,10 @@ const Location: Template<ExternalApiRenderData> = ({
                 </div>
             }
           </div>
+          <div className="flex border-2">
+            <div className="">{imageurl1}</div>
+            <div className="text text-xl">{c_aboutSection}</div>
+            </div>
           <div className="nearby-sec">
             <div className="container">
               <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>

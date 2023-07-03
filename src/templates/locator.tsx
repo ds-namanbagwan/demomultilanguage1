@@ -1,21 +1,9 @@
 import * as React from "react";
 import "../index.css";
-import { GetHeadConfig, GetPath, GetRedirects, HeadConfig, Template, TemplateConfig, TemplateProps, TemplateRenderProps } from "@yext/pages";
+import { GetHeadConfig, GetPath, HeadConfig, Template, TemplateConfig, TemplateProps, TemplateRenderProps } from "@yext/pages";
 import { SearchHeadlessProvider } from "@yext/search-headless-react";
-import { FilterSearch, VerticalResults, ResultsCount, AppliedFilters, ApplyFiltersButton, LocationBias, Pagination } from "@yext/search-ui-react";
-import { Location } from "../types/search/locations";
-import MapboxMap from "../components/MapboxMap";
-import MapPin from "../components/MapPin";
-import LocationCard from "../components/locatorPage/LocationCard";
-import PageLayout from "../components/layouts/PageLayout";
-import Geocode from "react-geocode";
-import UseMyLocation from "../components/locatorPage/UseMyLocation"
-import { Address } from "../types/search/locations";
-import { useSearchActions } from "@yext/search-headless-react";
-import { useEffect } from "react";
 import SearchLayout from "../components/locatorPage/SearchLayout";
 import { stagingBaseurl, favicon, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie } from "../../sites-global/global"
-import Newsletter from "../components/locatorPage/Newsletter";
 import { JsonLd } from "react-schemaorg";
 import { StaticData } from "../../sites-global/staticData";
 import {
@@ -33,6 +21,7 @@ export const config: TemplateConfig = {
     // directly as props to the default exported function.
     fields: [
       "name",
+      "slug"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -107,27 +96,27 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       //    },
       //  },
 
-      {
-        type: "meta",
-        attributes: {
-          property: "og:description",
-          content: `${document.c_meta_description ? document.c_meta_description : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
-        },
-      },
-      {
-        type: "meta",
-        attributes: {
-          property: "og:title",
-          content: `${document.c_meta_title ? document.c_meta_title : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`}`,
-        },
-      },
-      {
-        type: "meta",
-        attributes: {
-          property: "og:image",
-          content: favicon,
-        },
-      },
+      // {
+      //   type: "meta",
+      //   attributes: {
+      //     property: "og:description",
+      //     content: `${document.c_meta_description ? document.c_meta_description : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
+      //   },
+      // },
+      // {
+      //   type: "meta",
+      //   attributes: {
+      //     property: "og:title",
+      //     content: `${document.c_meta_title ? document.c_meta_title : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`}`,
+      //   },
+      // },
+      // {
+      //   type: "meta",
+      //   attributes: {
+      //     property: "og:image",
+      //     content: favicon,
+      //   },
+      // },
       {
         type: "meta",
         attributes: {

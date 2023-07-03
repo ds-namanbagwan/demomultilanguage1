@@ -31,7 +31,7 @@ import Header from "../components/layouts/NewHeader";
 var currentUrl = "";
 export const config: TemplateConfig = {
   stream: {
-    $id: "matlan-city",
+    $id: "city",
     filter: {
       entityTypes: ["ce_city"],
     },
