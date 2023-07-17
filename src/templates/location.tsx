@@ -1,16 +1,8 @@
 import * as React from "react";
-import Banner from "../components/locationDetail/banner";
-import Cta from "../components/commons/cta";
 import Contact from "../components/locationDetail/contact";
-import ApiCall from "../Apis/ApiCall";
 import Nearby from "../components/locationDetail/Nearby";
-import { CustomFieldDebuggerReactProvider } from '@yext/custom-field-debugger';
 import { JsonLd } from "react-schemaorg";
-import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-import Logo from "../images/logo-header.svg"
-import offerBanner from "../images/offer-banner.jpg"
-import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {
   Template,
@@ -23,33 +15,19 @@ import {
   TransformProps,
   HeadConfig,
 } from "@yext/pages";
-import PageLayout from "../components/layouts/PageLayout";
 import { fetch } from "@yext/pages/util";
-import Nav from "../components/layouts/Nav";
-import Footer from "../components/layouts/footer";
-import Menu from "../components/locationDetail/Menu";
-import PhotoSlider from "../components/locationDetail/PhotoSlider";
-import PhotoGallery from "../components/locationDetail/PhotoGallery";
-import About from "../components/locationDetail/About";
-import Breadcrumb from "../components/layouts/Breadcrumb";
 import CustomMap from "../components/locationDetail/CustomMap";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
-import StoreHighlight from "../components/locationDetail/SoreHighlight";
 import OpenClose from "../components/commons/openClose";
-import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
 
-import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import { stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
 } from "@yext/pages/components";
-import FeaturesBrand from "../components/locationDetail/FeaturesBrand";
-import { Fade, Slide } from "react-awesome-reveal";
-import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 import Header from "../components/layouts/NewHeader";
-// import Footer from "../components/layouts/NewFooter";
 import Footer1 from "../components/layouts/NewFooter";
 
 /**
@@ -75,7 +53,9 @@ export const config: TemplateConfig = {
       "cityCoordinate",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
-      "dm_directoryParents.meta.entityType"
+      "dm_directoryParents.meta.entityType",
+      "c_aboutSection",
+      "c_image"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -98,24 +78,24 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
 
   var url = "";
-  var name: any = document.name.toLowerCase();
-  var string: any = name.toString();
-  let result: any = string.replaceAll(" ", "-");
+  // var name: any = document.name.toLowerCase();
+  // var string: any = name.toString();
+  // let result: any = string.replaceAll(" ", "-");
 
-  document.dm_directoryParents?.map((result: any, i: Number) => {
-    if (i > 0) {
-      url += result.slug + "/"
-    }
-  })
-  if (!document.slug) {
-    url += `${result}.html`;
-  } else {
-    url += document.locale + "/" + `${document.slug.toString()}.html`;
-  }
+  // document.dm_directoryParents?.map((result: any, i: Number) => {
+  //   if (i > 0) {
+  //     url += result.slug + "/"
+  //   }
+  // })
+  // if (!document.slug) {
+  //   url += `${result}.html`;
+  // } else {
+  //   url += document.locale + "/" + `${document.slug.toString()}.html`;
+  // }
 
-  // return `${document.id}.html`;
+  // // return `${document.id}.html`;
 
-  return document.locale + "/" + url;
+  return document.locale + "/" + document.id+".html";
   // return document.locale+"/"+document.id;
 
 };
@@ -224,9 +204,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
-      /// twitter tag
     ],
-
   };
 };
 type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
@@ -272,7 +250,9 @@ const Location: Template<ExternalApiRenderData> = ({
     displayCoordinate,
     cityCoordinate,
     dm_directoryParents,
-    name
+    name,
+    c_aboutSection,
+    c_image
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -392,7 +372,14 @@ const Location: Template<ExternalApiRenderData> = ({
   let imageurl = photoGallery ? photoGallery.map((element: any) => {
     return element.image.url
   }) : null;
-  let bannerimage = c_banner_image && c_banner_image.image.url;
+
+  let imageurl1 = c_image ? c_image.map((element1: any) => {
+    // console.log(element1.url,"124366")
+    return <>
+   <img src={element1.url} alt="" />
+    </>
+  }) : null;
+
 
   return (
     <>
@@ -436,8 +423,7 @@ const Location: Template<ExternalApiRenderData> = ({
             name={name}
             address={address}
             parents={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
-          ></BreadCrumbs>
+            baseUrl={relativePrefixToRoot} locale={undefined}          ></BreadCrumbs>
           <div className="container">
             <div className='banner-text banner-dark-bg justify-center text-center'>
               <h1 className="">{name}</h1>
@@ -460,6 +446,10 @@ const Location: Template<ExternalApiRenderData> = ({
                 </div>
             }
           </div>
+          <div className="flex border-2">
+            <div className="">{imageurl1}</div>
+            <div className="text text-xl">{c_aboutSection}</div>
+            </div>
           <div className="nearby-sec">
             <div className="container">
               <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>

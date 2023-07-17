@@ -1,21 +1,9 @@
 import * as React from "react";
 import "../index.css";
-import { GetHeadConfig, GetPath, GetRedirects, HeadConfig, Template, TemplateConfig, TemplateProps, TemplateRenderProps } from "@yext/pages";
+import { GetHeadConfig, GetPath, HeadConfig, Template, TemplateConfig, TemplateProps, TemplateRenderProps } from "@yext/pages";
 import { SearchHeadlessProvider } from "@yext/search-headless-react";
-import { FilterSearch, VerticalResults, ResultsCount, AppliedFilters, ApplyFiltersButton, LocationBias, Pagination } from "@yext/search-ui-react";
-import { Location } from "../types/search/locations";
-import MapboxMap from "../components/MapboxMap";
-import MapPin from "../components/MapPin";
-import LocationCard from "../components/locatorPage/LocationCard";
-import PageLayout from "../components/layouts/PageLayout";
-import Geocode from "react-geocode";
-import UseMyLocation from "../components/locatorPage/UseMyLocation"
-import { Address } from "../types/search/locations";
-import { useSearchActions } from "@yext/search-headless-react";
-import { useEffect } from "react";
 import SearchLayout from "../components/locatorPage/SearchLayout";
 import { stagingBaseurl, favicon, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie } from "../../sites-global/global"
-import Newsletter from "../components/locatorPage/Newsletter";
 import { JsonLd } from "react-schemaorg";
 import { StaticData } from "../../sites-global/staticData";
 import {
@@ -33,6 +21,7 @@ export const config: TemplateConfig = {
     // directly as props to the default exported function.
     fields: [
       "name",
+      "slug"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -40,14 +29,14 @@ export const config: TemplateConfig = {
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en","fr","en_GB"],
+      locales: ["en", "fr", "en_GB"],
       primary: false,
     },
   },
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.locale+"/"+`index.html`;
+  return document.locale + "/" + `index.html`;
   // return `/index.html`;
 };
 
@@ -72,7 +61,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -80,7 +68,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: StaticData.Brandname,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -95,39 +82,36 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           href: favicon,
         },
       },
-
       //  {
       //    type: "link",
       //    attributes: {
       //      rel: "canonical",
       //      href: `${
       //        document._site.c_canonical?document.c_canonical:stagingBaseurl
-
       //      }`,
       //    },
       //  },
-
       {
         type: "meta",
         attributes: {
           property: "og:description",
-          content: `${document.c_meta_description ? document.c_meta_description : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${document.c_meta_description ? document.c_meta_description : ``}`,
         },
       },
       {
         type: "meta",
         attributes: {
           property: "og:title",
-          content: `${document.c_meta_title ? document.c_meta_title : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`}`,
+          content: `${document.c_meta_title ? document.c_meta_title : ``}`,
         },
       },
-      {
-        type: "meta",
-        attributes: {
-          property: "og:image",
-          content: favicon,
-        },
-      },
+      // {
+      //   type: "meta",
+      //   attributes: {
+      //     property: "og:image",
+      //     content: favicon,
+      //   },
+      // },
       {
         type: "meta",
         attributes: {
@@ -156,9 +140,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: favicon
         },
       },
-
     ],
-
   };
 };
 
@@ -180,9 +162,7 @@ const Locator: Template<TemplateRenderProps> = ({
     universalAutocomplete: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/autocomplete",
     verticalAutocomplete: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/vertical/autocomplete",
     filterSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/filtersearch",
-
   }
-  var Api = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";
   // console.log(document.locale,"jhjtgngjjyjgfhgd");
   return (
     <>
