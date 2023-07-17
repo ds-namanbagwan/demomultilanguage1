@@ -2,7 +2,7 @@
 export const AnswerExperienceConfig = {
   limit:4,
   locale: "en",
-  apiKey : "73d24416c89cbb219cda70e2a2295dcb",
+  apiKey : "74b0e6dc349b18c73c36d7fea3d1e2b4",
   verticalKey : "locations",
   experienceKey : "multilanguage-1",
   experienceVersion: "STAGING",
