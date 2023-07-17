@@ -1,8 +1,6 @@
-import * as React from "react"
-
+import * as React from "react";
 
 export default function Footer1(props: any) {
-    // console.log(props, "26812282428242s")
 
     return (
         <>
@@ -26,7 +24,6 @@ export default function Footer1(props: any) {
                     )
                 })}
                 </div>
-
                 <div>
                     {props?.props?.c_footerdata2?.map((c_footerdata2: any) => {
                         // console.log(img, "544561")
@@ -91,8 +88,6 @@ export default function Footer1(props: any) {
                     })}
                 </div>
             </div>
-
-
         </>
     )
 }

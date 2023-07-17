@@ -8,15 +8,14 @@ import Address from "../commons/Address";
 import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
-
+// import { AnswersHeadless } from "@yext/answers-headless-react";
+// const local= ["en", "fr", "en_GB"];
 
 const metersToMiles = (meters: number) => {
   const miles = meters * 0.000621371;
   return miles.toFixed(2);
 }
 let array = [];
-
-
 
 const LocationCard: CardComponent<Location> = ({ result }) => {
   console.log(result,"xjnhgvhhnsfbvsbyhbgvhdjh")
@@ -37,7 +36,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address } = result.rawData;
+  const { address} = result.rawData;  
   console.log(result.rawData,"local") 
 
   var name: any = result.rawData.name?.toLowerCase();
@@ -53,12 +52,23 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   var finalcity: any = initialrcity.replaceAll(" ", "-");
   var string: any = name.toString();
   let result1: any = string.replaceAll(" ", "-");
+  let currentPathName = window.location.pathname;
+  // console.log(currentPathName,"flshnfskfhnf");
+  
+  const [currentLocale, setCurrentLocale] = React.useState('en');
+
+  if(currentPathName.includes("en")){
+    setCurrentLocale("en")
+  }
+  else if(currentPathName.includes("fr")){
+    setCurrentLocale("fr")
+  }
+    
   if (!result.rawData.slug) {
     url = finalcountry + "/" + finalregion + "/" + finalcity + "/" + `${result1}.html`;
     // console.log(url, "url");
-  } else {
-    // url = `/${result.rawData.slug.toString()}.html`;
-    url=finalcountry+"/"+`${result.rawData.slug.toString()}.html`;
+  } else {    // url = `/${result.rawData.slug.toString()}.html`;
+    url=`${setCurrentLocale}`+"/"+`${result.rawData.slug.toString()}.html`;
     console.log(url,"naman142")
   }
 
@@ -131,11 +141,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 <GetDirection buttonText={StaticData.getDirection} address={address} latitude={result.rawData.displayCoordinate?.latitude} longitude={result.rawData.displayCoordinate?.longitude} />
                 : <GetDirection buttonText={StaticData.getDirection} address={address} latitude={result.rawData.yextDisplayCoordinate?.latitude} longitude={result.rawData.yextDisplayCoordinate?.longitude} />}
             </div>
-
-
-
           </div>
-
         </div>
       </div>
     </div>
@@ -145,3 +151,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
 }
 
 export default LocationCard;
+
+function usestate(arg0: string): [any, any] {
+  throw new Error("Function not implemented.");
+}

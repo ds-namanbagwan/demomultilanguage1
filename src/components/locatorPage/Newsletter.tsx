@@ -7,8 +7,8 @@ export default function Newsletter(){
     const [status, setStatus] = React.useState<string | null>(null)
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [newsletter,setNewsletter]=React.useState(false);
-    const [email, setEmail] = useState("")
-    const [name, setName] = useState("")
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
   
     const FORM_URL = `https://www.matalan.co.uk/newsletter`
     const recaptchaRef = React.createRef();
