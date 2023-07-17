@@ -37,7 +37,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address } = result.rawData;
+  const { address } = result.rawData; 
 
   var name: any = result.rawData.name?.toLowerCase();
   // var locale:any = result.rawData.locale?.toLowerCase();
