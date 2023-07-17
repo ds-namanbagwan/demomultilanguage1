@@ -61,7 +61,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -69,7 +68,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: StaticData.Brandname,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -84,32 +82,29 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           href: favicon,
         },
       },
-
       //  {
       //    type: "link",
       //    attributes: {
       //      rel: "canonical",
       //      href: `${
       //        document._site.c_canonical?document.c_canonical:stagingBaseurl
-
       //      }`,
       //    },
       //  },
-
-      // {
-      //   type: "meta",
-      //   attributes: {
-      //     property: "og:description",
-      //     content: `${document.c_meta_description ? document.c_meta_description : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
-      //   },
-      // },
-      // {
-      //   type: "meta",
-      //   attributes: {
-      //     property: "og:title",
-      //     content: `${document.c_meta_title ? document.c_meta_title : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`}`,
-      //   },
-      // },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:description",
+          content: `${document.c_meta_description ? document.c_meta_description : ``}`,
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          property: "og:title",
+          content: `${document.c_meta_title ? document.c_meta_title :``}`,
+        },
+      },
       // {
       //   type: "meta",
       //   attributes: {
@@ -145,9 +140,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: favicon
         },
       },
-
     ],
-
   };
 };
 
@@ -169,9 +162,7 @@ const Locator: Template<TemplateRenderProps> = ({
     universalAutocomplete: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/autocomplete",
     verticalAutocomplete: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/vertical/autocomplete",
     filterSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/filtersearch",
-
   }
-  var Api = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";
   // console.log(document.locale,"jhjtgngjjyjgfhgd");
   return (
     <>
@@ -202,7 +193,7 @@ const Locator: Template<TemplateRenderProps> = ({
             sessionTrackingEnabled={true}
             endpoints={AnswerExperienceConfig.endpoints}
           >
-
+            
             <SearchLayout _site={_site} />
 
           </SearchHeadlessProvider>
