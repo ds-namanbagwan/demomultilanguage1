@@ -19,7 +19,7 @@ let array = [];
 
 
 const LocationCard: CardComponent<Location> = ({ result }) => {
-  // console.log(result,"xjnhgvhhnsfbvsbyhbgvhdjh")
+  console.log(result,"xjnhgvhhnsfbvsbyhbgvhdjh")
 
   let url = "";
   const [hoursopen, setHoursopen] = React.useState(false);
@@ -37,7 +37,8 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address } = result.rawData; 
+  const { address } = result.rawData;
+  console.log(result.rawData,"local") 
 
   var name: any = result.rawData.name?.toLowerCase();
   // var locale:any = result.rawData.locale?.toLowerCase();
@@ -56,7 +57,9 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     url = finalcountry + "/" + finalregion + "/" + finalcity + "/" + `${result1}.html`;
     // console.log(url, "url");
   } else {
-    url = `/${result.rawData.slug.toString()}.html`;
+    // url = `/${result.rawData.slug.toString()}.html`;
+    url=finalcountry+"/"+`${result.rawData.slug.toString()}.html`;
+    console.log(url,"naman142")
   }
 
   return (

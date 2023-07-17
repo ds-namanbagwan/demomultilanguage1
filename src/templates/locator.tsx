@@ -36,8 +36,8 @@ export const config: TemplateConfig = {
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.locale + "/" + `index.html`;
-  // return `/index.html`;
+  // return document.locale + "/" + `index.html`;
+  return `/index.html`;
 };
 
 // export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
@@ -151,7 +151,7 @@ const Locator: Template<TemplateRenderProps> = ({
   const {
     _site
   } = document;
-  console.log(document.locale, "locale check karna hai")
+  // console.log(document.locale, "locale check karna hai")
 
 
   let templateData = { document: document, __meta: __meta };
