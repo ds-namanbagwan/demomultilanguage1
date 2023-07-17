@@ -29,14 +29,14 @@ export const config: TemplateConfig = {
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en","fr","en_GB"],
+      locales: ["en", "fr", "en_GB"],
       primary: false,
     },
   },
 };
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.locale+"/"+`index.html`;
+  return document.locale + "/" + `index.html`;
   // return `/index.html`;
 };
 
@@ -102,7 +102,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           property: "og:title",
-          content: `${document.c_meta_title ? document.c_meta_title :``}`,
+          content: `${document.c_meta_title ? document.c_meta_title : ``}`,
         },
       },
       // {
@@ -193,7 +193,7 @@ const Locator: Template<TemplateRenderProps> = ({
             sessionTrackingEnabled={true}
             endpoints={AnswerExperienceConfig.endpoints}
           >
-            
+
             <SearchLayout _site={_site} />
 
           </SearchHeadlessProvider>
